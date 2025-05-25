@@ -17,7 +17,7 @@ FIELDNAMES = [
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--server-host', default='172.16.16.101')
-parser.add_argument('--server-port', type=int, default=50000)
+parser.add_argument('--server-port', type=int, default=8889)
 args = parser.parse_args()
 
 HOST = args.server_host
