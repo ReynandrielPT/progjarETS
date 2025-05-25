@@ -27,6 +27,33 @@ def send_command(command_str):
     except Exception as e:
         return {"status": "ERROR", "data": str(e)}
 
+def remote_list():
+    command_str = "LIST"
+    hasil = send_command(command_str)
+    if (hasil['status']=='OK'):
+        print("daftar file : ")
+        for nmfile in hasil['data']:
+            print(f"- {nmfile}")
+        return True
+    else:
+        print("Gagal")
+        return False
+
+def remote_get(filename=""):
+    command_str=f"GET {filename}"
+    hasil = send_command(command_str)
+    if (hasil['status']=='OK'):
+        namafile= hasil['data_namafile']
+        isifile = base64.b64decode(hasil['data_file'])
+        fp = open(namafile,'wb+')
+        fp.write(isifile)
+        fp.close()
+        print(f"File {hasil['data_namafile']} berhasil didownload")
+        return True
+    else:
+        print("Gagal")
+        return False
+
 def remote_upload(filepath):
     if not os.path.exists(filepath):
         return {"status": "ERROR", "data": f"File not found: {filepath}"}
@@ -43,7 +70,7 @@ def remote_upload(filepath):
         return res
     except Exception as e:
         return {"status": "ERROR", "data": str(e)}
-        
+
 def get_indexed_filename(filename):
     if not os.path.exists(filename):
         return filename
