@@ -7,7 +7,7 @@ import os
 
 CLIENT_POOL = [1, 5, 50]
 SIZES = [10, 50, 100]
-OPS = ['upload']
+OPS = ['upload', 'download']
 
 FIELDNAMES = [
     'Nomor', 'Operasi', 'Volume',
