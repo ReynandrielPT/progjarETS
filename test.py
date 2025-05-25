@@ -5,7 +5,7 @@ import argparse
 import json
 import os
 
-CLIENT_POOL = [50]
+CLIENT_POOL = [1, 5, 50]
 SIZES = [10, 50, 100]
 OPS = ['upload']
 
